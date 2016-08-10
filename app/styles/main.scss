@@ -12,14 +12,22 @@ $black-border: 5px solid black;
  *   styles
  ******************/
 body{
-  // background-color: orange;
-}
-.main-template{
+  .container{
+    
+  }
   
-  height: 100%;
+}
+
+.main-template{
+  display: block;  
+  
   .left-sidebar{
     padding: 1px;
-    border-right: $black-border;
+    min-height: 1000px;
+    
+    ul{
+      max-width: 100%
+    }
     .searchbar{
       height: 80px;
       padding: 10px;
@@ -28,5 +36,22 @@ body{
         
       }
     }
+    .rss-item{
+      max-width: 100%;
+      h5{
+        // max-width: 100%;
+        overflow: hidden;
+      }
+    }
+  }
+  .right-side{
+    border-left: $black-border;
+    min-height: 1000px;
+    .panel{
+      padding: 15px;
+    }
+  }
+  .feeds-container{
+    padding: 10px;
   }
 }
