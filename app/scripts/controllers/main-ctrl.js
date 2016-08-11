@@ -15,11 +15,16 @@ angular.module('rssAppApp')
 	    $scope.form = {};
 	    $scope.feeds = [];
 	    $scope.selected = {};
+	    $scope.selectedFeed = '';
 	    for(var key in $location.search()){
 	    	if(key.indexOf("feed") > -1){
-	    		getRssFeed($location.search()[key], function(obj){
-	    			obj.key = key;
+	    		getRssFeed($location.search()[key], key, function(myKey, obj){
+	    			console.log(myKey);
+	    			obj.key = myKey;
 	    			$scope.feeds.push(obj);
+	    			if(!$scope.selected.key){
+	    				$scope.selected = obj;
+	    			}
 	    		});
 	    	}
 	    }
@@ -28,13 +33,13 @@ angular.module('rssAppApp')
     /**
      * function for downloading rss feed
      */
-    var getRssFeed = function getRssFeed(feedUrl, callback){
+    var getRssFeed = function getRssFeed(feedUrl, key, callback){
     	$http.jsonp($scope.baseUrl + feedUrl + "&callback=JSON_CALLBACK"
 			).then(function success(response) {
 			// debugger;
 			if(response.data.responseData){
 				var obj = response.data.responseData.feed;
-				callback(obj);
+				callback(key, obj);
 				
 		   	}else{
 		   		swal({
@@ -66,6 +71,7 @@ angular.module('rssAppApp')
     
     $scope.selectFeed = function selectFeed(selected){
     	$scope.selected = selected;
+    	console.log(selected.key);
     };
     
     _init();

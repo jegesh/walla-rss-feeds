@@ -37,11 +37,17 @@ body{
       }
     }
     .rss-item{
-      max-width: 100%;
+      max-width: 300px;
       h5{
-        // max-width: 100%;
+        max-width: 200px;
         overflow: hidden;
       }
+      .glyphicon{
+        margin: 15px;
+      }
+    }
+    .rss-item .activeFeed{
+      background: grey;
     }
   }
   .right-side{

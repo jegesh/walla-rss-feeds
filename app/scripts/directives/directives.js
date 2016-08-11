@@ -13,12 +13,12 @@ angular.module('rssAppApp').directive('rssItem', ['$location', function($locatio
   			$location.search(scope.item.key, null);
   		};
   	},
-    template: '<div class="btn btn-default rss-item"><h5 class="col-lg-10 col-med-9">{{item.feedUrl}}</h5><span ng-click="removeFeed()" class="glyphicon glyphicon-remove col-md-3 col-lg-2"></span></div>'
+    template: '<btn ng-class="{\'activeFeed\': item.key == selected.key}" class="btn btn-default"><h5 class="pull-left">{{item.feedUrl}}</h5><span ng-click="removeFeed()" class="glyphicon glyphicon-remove pull-right"></span></btn>'
   };
 }]);
 
 angular.module('rssAppApp').directive('feedItem', [function() {
   return {   
-  	template: '<div class=" panel panel-primary"><h2 class="" >{{item.title}}</h2><p class="">Date: {{item.publishedDate}}</p><p class=""><small>{{item.contentSnippet}}</small></p></div>'
+  	template: '<div class=" panel panel-primary"><h2 class="" >{{item.title}}</h2><p class="">Date: {{item.publishedDate}}</p><p class="" ><small ng-bind-html="item.contentSnippet"></small></p></div>'
   };
 }]);
